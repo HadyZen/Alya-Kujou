@@ -20,7 +20,7 @@ module.exports = {
             });
 
             const imageBuffer = Buffer.from(response.data, 'binary');
-            const imagePath = path.join(__dirname, 'image.png'); // Save to current directory
+            const imagePath = path.join(__dirname, 'sampah', 'meme.png'); 
 
             fs.writeFileSync(imagePath, imageBuffer);
 
