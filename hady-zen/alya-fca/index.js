@@ -454,11 +454,11 @@ function login(loginData, options, callback) {
 
     const globalOptions = {
         selfListen: false,
-        listenEvents: true,
-        listenTyping: true,
+        listenEvents: false,
+        listenTyping: false,
         updatePresence: false,
         forceLogin: false,
-        autoMarkDelivery: false,
+        autoMarkDelivery: true,
         autoMarkRead: false,
         autoReconnect: true,
         logRecordSize: defaultLogRecordSize,
