@@ -8,7 +8,7 @@
  const path = require("path");
  const akun = fs.readFileSync('akun.txt', 'utf8');
  const { version } = require('./package.json');
- const { awalan, nama, admin, proxy, port, bahasa: nakano } = require('./alya.json');
+ const { awalan, nama, admin, proxy, port, bahasa: nakano, maintain } = require('./alya.json');
  const { kuldown } = require('./hady-zen/kuldown');
 
 global.Alya = { awalan: awalan, nama: nama, admin: admin, logo: logo };
@@ -59,14 +59,14 @@ if (!body.startsWith(awalan) || body == " ") return console.log(logo.pesan + `${
    
    if (kuldown(event.senderID, config.nama, config.kuldown) == 'hadi') { 
 	   
-if (config.peran == 0 || !config.peran) {
+if (maintain == false && (config.peran == 0 || !config.peran)) {
     await Alya({ api, event, args, bhs });
     return;
 }
 if ((config.peran == 2 || config.peran == 1) && admin.includes(event.senderID) || config.peran == 0) {
     await Alya({ api, event, args, bhs });
     return;
-} else if (config.peran == 1 && ff.includes(event.senderID) || config.peran == 0) {
+} else if (maintain == false && config.peran == 1 && (ff.includes(event.senderID) || config.peran == 0)) {
     await Alya({ api, event, args, bhs });
     return;
 } else { 
