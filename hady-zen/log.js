@@ -20,10 +20,10 @@ const warna = {
 const logo = {
   error: `${warna.hitam}${waktu}${warna.reset} ${warna.merah}${font.bold}ERROR: ${warna.reset}`, 
   login: `${warna.hitam}${waktu}${warna.reset} ${warna.hijau}${font.bold}LOGIN: ${warna.reset}`, 
-  info: `${warna.hitam}${waktu}${warna.reset} ${warna.kuning}${font.bold}INFO: ${warna.reset}`, 
-  cmds: `${warna.hitam}${waktu}${warna.reset} ${warna.cyan}${font.bold}CMDS: ${warna.reset}`, 
+  info: `${warna.hitam}${waktu}${warna.reset} ${warna.cyan}${font.bold}INFO: ${warna.reset}`, 
+  cmds: `${warna.hitam}${waktu}${warna.reset} ${warna.magenta}${font.bold}CMDS: ${warna.reset}`, 
   pesan: `${warna.hitam}${waktu}${warna.reset} ${warna.biru}${font.bold}PESAN: ${warna.reset}`, 
-  update: `${warna.hitam}${waktu}${warna.reset} ${warna.magenta}${font.bold}UPDATE: ${warna.reset}`, 
+  update: `${warna.hitam}${waktu}${warna.reset} ${warna.kuning}${font.bold}UPDATE: ${warna.reset}`, 
   alya: `${warna.biru}▄▀█ █░ █▄█ ▄▀█  █▄▀ █░█ ░█ █▀█ █░█\n█▀█ █▄ ░█░ █▀█  █░█ █▄█ ▄█ █▄█ █▄█${warna.reset}\n`
 };
 
