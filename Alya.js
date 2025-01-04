@@ -8,7 +8,7 @@
  const path = require("path");
  const akun = fs.readFileSync('akun.txt', 'utf8');
  const { version } = require('./package.json');
- const { awalan, nama, admin, proxy, port, bahasa: nakano } = require('./config.json');
+ const { awalan, nama, admin, proxy, port, bahasa: nakano } = require('./alya.json');
  const { kuldown } = require('./hady-zen/kuldown');
 
 global.Alya = { awalan: awalan, nama: nama, admin: admin, logo: logo };
