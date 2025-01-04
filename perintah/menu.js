@@ -56,7 +56,7 @@ Alya: async function ({ api, event, args }) {
 - Penulis: ${info.penulis}
 - Peran: ${info.peran}
 - Kuldown: ${info.kuldown} detik
-- Tutorial: :${args[0]}${info.tutor}`, event.threadID, event.messageID);
+- Tutorial: ${global.Alya.awalan}${args[0]} ${info.tutor}`, event.threadID, event.messageID);
     } else if (args[0] && !commandInfo[args[0]]) { 
       api.sendMessage(`Perintah ${args[0]} tidak ada senpai.`, event.threadID, event.messageID);
     } else if (!args[0]) {
