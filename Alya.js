@@ -16,7 +16,7 @@ global.Alya = { awalan: awalan, nama: nama, admin: admin, logo: logo };
 console.log(global.Alya.logo.alya);
 console.log(logo.info + `Versi ${version}.`);
 console.log(logo.info + `Awalan ${nama.toLowerCase()}: ${awalan}`);
-console.log(logo.info + `Bahasa yang digunakan: ${bahasa}.`);
+console.log(logo.info + `Bahasa yang digunakan: ${nakano}.`);
 console.log(logo.info + `Admin ${nama.toLowerCase()}: ${admin}.`);
 fs.readdir('./perintah', (err, files) => { 
 const shadow = files.map(file => path.parse(file).name);
