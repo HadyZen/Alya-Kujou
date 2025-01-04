@@ -1,4 +1,4 @@
-![alya](./alya-kujou/alya-pp.png) 
+![alya](alya-kujou/alya-pp.png) 
 
 <h1 align="center">𝗔𝗹𝘆𝗮 𝗞𝘂𝗷𝗼𝘂 ✧</h1>
 
