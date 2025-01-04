@@ -1,4 +1,4 @@
-![alya](alya-kujou/alya-pp.png) 
+![alya](https://raw.githubusercontent.com/HadyZen/Alya-Kujou/refs/heads/main/alya-kujou/alya-pp.png) 
 
 <h1 align="center">𝗔𝗹𝘆𝗮 𝗞𝘂𝗷𝗼𝘂 ✧</h1>
 
@@ -32,7 +32,7 @@ https://github.com/HadyZen/Alya-Kujou.git
 ```
 • unduh cookie editor dibawah ini <br> 
 ```cookie
-nanti
+[nanti](https://raw.githubusercontent.com/HadyZen/Alya-Kujou/refs/heads/main/alya-kujou/alya-cookie.zip
 ```
 • masukkan file cookie editor ke kiwi extension <br>
 • buka url dibawah ini di kiwi browser <br>
@@ -44,3 +44,8 @@ https://www.facebook.com
 • pilih cookie editor lalu klik <br>
 • klik export atau tanda keluar, pilih format json <br>
 • buka file akun.txt di project mu lalu ganti isinya <br>
+• setel alya.json sebagaimana yang kamu mau <br>
+• buka terminal lalu ketik kode ini <br> 
+```kode
+npm start
+```
