@@ -91,6 +91,9 @@ app.listen(port, () => { });
 app.get('/', (req, res) => { 
  res.sendFile(path.join(__dirname, 'alya-kujou', 'hady_alya.html'));
 });
+app.use((req, res, next) => {
+  res.status(404).sendFile(path.join(__dirname, 'alya-kujou', 'alya-error.html'));
+});
 
 process.on('unhandledRejection', (reason) => {
 	console.log(logo.error + reason.message);
