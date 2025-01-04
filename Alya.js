@@ -16,7 +16,7 @@ global.Alya = { awalan: awalan, nama: nama, admin: admin, logo: logo, bhs: bahas
 console.log(global.Alya.logo.alya);
 console.log(logo.info + `Versi ${version}.`);
 console.log(logo.info + `Awalan ${nama.toLowerCase()}: ${awalan}`);
-console.log(logo.info + `Bahasa ${nama.toLowerCase()}: ${bahasa}.`);
+console.log(logo.info + `Bahasa yang digunakan: ${bahasa}.`);
 console.log(logo.info + `Admin ${nama.toLowerCase()}: ${admin}.`);
 fs.readdir('./perintah', (err, files) => { 
 const shadow = files.map(file => path.parse(file).name);
@@ -89,7 +89,7 @@ if ((config.peran == 2 || config.peran == 1) && admin.includes(event.senderID) |
 
 app.listen(port, () => { });
 app.get('/', (req, res) => { 
- res.sendFile(path.join(__dirname, 'hady-zen', 'hadi.html'));
+ res.sendFile(path.join('alya-kujou', 'hady_alya.html'));
 });
 
 process.on('unhandledRejection', (reason) => {
