@@ -2,7 +2,7 @@
   "name": "Alya-Kujou",
   "author": "Hady Zen",
   "description": "Chatbot messenger by hady",
-  "version": "1.4.2",
+  "version": "1.5.0",
   "main": "Alya.js",
   "lockfileVersion": 3,
   "requires": true,
