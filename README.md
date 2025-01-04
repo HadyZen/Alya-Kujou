@@ -1,6 +1,6 @@
-![alya](https://raw.githubusercontent.com/HadyZen/Alya-Kujou/refs/heads/main/hady-zen/alya.png) 
+![alya](./hady-zen/alya.png) 
 
-<h2 align="center">𝗔𝗹𝘆𝗮 𝗞𝘂𝗷𝗼𝘂 ✧</h2>
+<h1 align="center">𝗔𝗹𝘆𝗮 𝗞𝘂𝗷𝗼𝘂 ✧</h1>
 
 > Personal Chatbot messenger by hady zen and saveng fox <br>
 > Yang mau di joki uptime hubungi kontak dibawah <br>
