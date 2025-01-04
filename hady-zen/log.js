@@ -4,7 +4,7 @@ const { waktu } = require("./waktu");
 const font = {
   bold: `\x1b[1m`,
   italic: `\x1b[3m`
-}
+};
 const warna = {
   reset: `\x1b[0m`, 
   hitam: `\x1b[38;5;240m`,
@@ -23,7 +23,8 @@ const logo = {
   info: `${warna.hitam}${waktu}${warna.reset} ${warna.kuning}${font.bold}INFO: ${warna.reset}`, 
   cmds: `${warna.hitam}${waktu}${warna.reset} ${warna.cyan}${font.bold}CMDS: ${warna.reset}`, 
   pesan: `${warna.hitam}${waktu}${warna.reset} ${warna.biru}${font.bold}PESAN: ${warna.reset}`, 
-  update: `${warna.hitam}${waktu}${warna.reset} ${warna.magenta}${font.bold}UPDATE: ${warna.reset}`
-}
+  update: `${warna.hitam}${waktu}${warna.reset} ${warna.magenta}${font.bold}UPDATE: ${warna.reset}`, 
+  alya: `${warna.biru}▄▀█ █░ █▄█ ▄▀█  █▄▀ █░█ ░█ █▀█ █░█\n█▀█ █▄ ░█░ █▀█  █░█ █▄█ ▄█ █▄█ █▄█${warna.reset}\n`
+};
 
 module.exports = { warna, font, logo };
