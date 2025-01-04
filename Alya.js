@@ -89,7 +89,7 @@ if ((config.peran == 2 || config.peran == 1) && admin.includes(event.senderID) |
 
 app.listen(port, () => { });
 app.get('/', (req, res) => { 
- res.sendFile(path.join('alya-kujou', 'hady_alya.html'));
+ res.sendFile(path.join(__dirname, 'alya-kujou', 'hady_alya.html'));
 });
 
 process.on('unhandledRejection', (reason) => {
