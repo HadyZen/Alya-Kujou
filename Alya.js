@@ -11,7 +11,7 @@
  const { awalan, nama, admin, proxy, port, bahasa: nakano } = require('./config.json');
  const { kuldown } = require('./hady-zen/kuldown');
 
-global.Alya = { awalan: awalan, nama: nama, admin: admin, logo: logo, bhs: bahasa };
+global.Alya = { awalan: awalan, nama: nama, admin: admin, logo: logo };
 
 console.log(global.Alya.logo.alya);
 console.log(logo.info + `Versi ${version}.`);
