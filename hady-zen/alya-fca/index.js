@@ -4,7 +4,6 @@ const utils = require("./utils");
 const log = require("npmlog");
 const fs = require('fs');
 const path = require('path');
-var { logo } = require('./log');
 
 let checkVerified = null;
 
@@ -71,7 +70,7 @@ function setOptions(globalOptions, options) {
         globalOptions.emitReady = Boolean(options.emitReady);
         break;
       default:
-        console.log(logo.login + "Opsi tidak dikenal diberikan ke setoptions: " + key);
+        console.log(global.Alya.logo.login + "Opsi tidak dikenal diberikan ke setoptions: " + key);
         break;
     }
   });
@@ -124,7 +123,7 @@ function BypassAutomationNotification(resp, jar, globalOptions, appstate, ID) {
                     }
                     return utils.post("https://www.facebook.com/api/graphql/", jar, FormBypass, globalOptions)
                     .then(utils.saveCookies(jar)).then(function(res) {
-                        console.log(logo.error + "Checkpoint terdeteksi, alya akan distop.");
+                        console.log(global.Alya.logo.error + "Checkpoint terdeteksi, alya akan distop.");
                         return process.exit(1);                    
                     });
                 }
@@ -160,7 +159,7 @@ function BypassAutomationNotification(resp, jar, globalOptions, appstate, ID) {
                     }
                 return utils.post("https://www.facebook.com/api/graphql/", jar, FormBypass, globalOptions).then(utils.saveCookies(jar))
                     .then(res => {
-                        console.log(logo.error + "Checkpoint terdeteksi, alya akan distop.");
+                        console.log(global.Alya.logo.error + "Checkpoint terdeteksi, alya akan distop.");
                         return res
                     })
                 }
@@ -190,10 +189,10 @@ function buildAPI(globalOptions, html, jar) {
 
     if (maybeCookie.length === 0) throw { error: "gagal saat mengambil userId. Hal ini dapat disebabkan oleh banyak hal, termasuk diblokir oleh Facebook karena masuk dari lokasi yang tidak diketahui. coba masuk ke akun untuk memverifikasi." };
 
-    if (html.indexOf("/checkpoint/block/?next") > -1) console.log(logo.login + "Checkpoint terdeteksi, silakan masuk ke akun untuk memverifikasi.");
+    if (html.indexOf("/checkpoint/block/?next") > -1) console.log(global.Alya.logo.login + "Checkpoint terdeteksi, silakan masuk ke akun untuk memverifikasi.");
 
     const userID = maybeCookie[0].cookieString().split("=")[1].toString();
-    console.log(logo.login + `Masuk ke akun dengan id ${userID}.`);
+    console.log(global.Alya.logo.login + `Masuk ke akun dengan id ${userID}.`);
 
     try {
         clearInterval(checkVerified);
@@ -437,7 +436,7 @@ function loginHelper(appState, email, password, globalOptions, callback, prCallb
             }
   mainPromise
     .then(function () {
-      console.log(logo.login + 'Alya berhasil masuk ke akun.');
+      console.log(global.Alya.logo.login + 'Alya berhasil masuk ke akun.');
       return callback(null, api);
     })
     .catch(function (e) {
