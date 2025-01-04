@@ -76,7 +76,7 @@ function setOptions(globalOptions, options) {
   });
 }
 
-const configPath = process.cwd() + '/hady-zen/kujou.json';  
+const configPath = process.cwd() + '/hady-zen/alya-fca/kujou.json';  
 let bypassEnabled = false;
 
 if (!fs.existsSync(configPath)) {
