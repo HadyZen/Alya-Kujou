@@ -47,7 +47,9 @@ console.log(logo.pesan + 'Mulai menerima pesan dari pengguna.');
    api.listenMqtt((err, event) => {
    const body = event.body;
 if (!body || maintain == true && !admin.includes(event.senderID) || chatdm == false && event.isGroup == false && !admin.includes(event.senderID)) return; 
-if (cdata(event.senderID) == 'gada') { bdata(event.senderID, 'Unknown', 0) };
+if (cdata(event.senderID) === 'gada') {
+  bdata(event.senderID, 'Unknown', 0);
+}
 if (body.toLowerCase() == "prefix") return api.sendMessage(`✨ Awalan ${nama} adalah: [ ${awalan} ]`, event.threadID, event.messageID);
 if (!body.startsWith(awalan) || body == " ") return console.log(logo.pesan + `${event.senderID} > ${body}`);
         const saveng = body.slice(awalan.length).trim().split(/ +/g);
