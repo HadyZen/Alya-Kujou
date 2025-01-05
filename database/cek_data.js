@@ -9,19 +9,19 @@ const db = new sqlite.Database('./alya.db', (err) => {
   }
 });
 
-db.get('SELECT * FROM users WHERE id = ?', [id], (err, row) => {
-  if (err) {
-    console.error('Gagal menarik data:', err.message);
-  } else {
-    if (row) {
-      const hadi = JSON.parse(row.data);
-      return hadi || 'gada';
-    } else {
-      return 'gada';
-    }
-  }
-});
+db.serialize(() => {
+    const sql = `SELECT * FROM users WHERE json_extract(data, '$.id') = ?`;
 
+    db.get(sql, [id], (err, row) => {
+      if (err) {
+        console.log(global.Alya.logo.error + 'Gagal mencari user:', err.message);
+      } else if (row) {
+        return row;
+      } else {
+        return 'gada';
+      }
+    });
+  });
 db.close((err) => { });
 }
 
