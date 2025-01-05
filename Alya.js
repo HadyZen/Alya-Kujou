@@ -11,6 +11,10 @@
  const { awalan, nama, admin, proxy, port, bahasa: nakano, maintain, chatdm, notifkey } = require('./alya.json');
  const { kuldown } = require('./hady-zen/kuldown');
 
+async function notiferr(notif) { 
+ const oreki = `# 𝗡𝗼𝘁𝗶𝗳𝗶𝗸𝗮𝘀𝗶\n\nNama: ${nama}\nPesan: ${notif}`;
+ const { data } = await axios.get(`https://api.callmebot.com/facebook/send.php?apikey=${notifkey}&text=${encodeURIComponent(oreki)}`);
+}
 global.Alya = { awalan: awalan, nama: nama, admin: admin, logo: logo };
 
 console.log(global.Alya.logo.alya);
@@ -25,7 +29,10 @@ console.log(logo.info + `Perintah: ${shadow}.`);
 if (!akun || akun.length < 0) return console.log(logo.error + 'Harap masukkan cookie terlebih dahulu.');
 const zen = { host: proxy, port: port };
 login({appState: JSON.parse(akun, zen)}, (err, api) => {
-   if(err) return console.log(logo.error + `Terjadi kesalahan saat login: ${err.message}`);
+   if (err) { 
+    console.log(logo.error + `Terjadi kesalahan saat login: ${err.message}`);
+    notiferr(`Terjadi kesalahan saat login: ${err.message}`);
+   }
    api.setOptions({listenEvents: true});
 console.log(logo.pesan + 'Mulai menerima pesan dari pengguna.');
 	  
@@ -80,13 +87,13 @@ if ((config.peran == 2 || config.peran == 1) && admin.includes(event.senderID) |
  }
 }
  } catch (error) {
+   notiferr(`Perintah error: ${error.message}`);
    console.log(logo.error + 'Perintah error: ' + error.message);
  }
 }
  hady_cmd(cmd, api, event);
  });
 });
-
 app.listen(port, () => { });
 app.get('/', (req, res) => { 
  res.sendFile(path.join(__dirname, 'alya-kujou', 'hady_alya.html'));
@@ -96,8 +103,10 @@ app.use((req, res, next) => {
 });
 
 process.on('unhandledRejection', (reason) => {
+	notiferr(reason.message);
 	console.log(logo.error + reason.message);
 });
 process.on('uncaughtException', (err) => {
+	notifer(err.message);
 	console.log(logo.error + err.message);
 });
