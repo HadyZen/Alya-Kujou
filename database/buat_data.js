@@ -1,7 +1,7 @@
 const sqlite = require('sqlite3').verbose();
 
 async function bdata(id, nama, yen) { 
-const db = new sqlite.Database('/database/alya.db', (err) => {
+const db = new sqlite.Database('./alya.db', (err) => {
   if (err) {
     console.log(global.Alya.logo.error + 'Gagal terhubung ke database: ', err.message);
   } else {
