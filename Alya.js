@@ -111,6 +111,6 @@ process.on('unhandledRejection', (reason) => {
 	console.log(logo.error + reason.message);
 });
 process.on('uncaughtException', (err) => {
-	notifer(err.message);
+	notiferr(err.message);
 	console.log(logo.error + err.message);
 });
