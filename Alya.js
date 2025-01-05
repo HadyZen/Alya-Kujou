@@ -6,6 +6,7 @@
  const { logo } = require("./hady-zen/log.js");
  const fs = require("fs");
  const path = require("path");
+ const axios = require('axios');
  const akun = fs.readFileSync('akun.txt', 'utf8');
  const { version } = require('./package.json');
  const { awalan, nama, admin, proxy, port, bahasa: nakano, maintain, chatdm, notifkey } = require('./alya.json');
@@ -15,6 +16,7 @@ async function notiferr(notif) {
   try { 
  const oreki = `# 𝗡𝗼𝘁𝗶𝗳𝗶𝗸𝗮𝘀𝗶\n\nNama: ${nama}\nPesan: ${notif}`;
  const { data } = await axios.get(`https://api.callmebot.com/facebook/send.php?apikey=${notifkey}&text=${encodeURIComponent(oreki)}`);
+   console.log(logo.cmds + 'Notifikasi berhasil: ' + data);
   } catch (futaro) {
    console.log(logo.error + 'Kamu belum menyetel notifkey atau notifkey tidak valid.');
   }
