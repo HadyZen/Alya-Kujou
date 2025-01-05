@@ -42,7 +42,7 @@ console.log(logo.pesan + 'Mulai menerima pesan dari pengguna.');
 	  
    api.listenMqtt((err, event) => {
    const body = event.body;
-if (!body || chatdm == false && event.isGroup == false) return;
+if (!body || maintain == true && !admin.includes(event.senderID) || chatdm == false && event.isGroup == false && !admin.includes(event.senderID)) return;
 if (body.toLowerCase() == "prefix") return api.sendMessage(`✨ Awalan ${nama} adalah: [ ${awalan} ]`, event.threadID, event.messageID);
 if (!body.startsWith(awalan) || body == " ") return console.log(logo.pesan + `${event.senderID} > ${body}`);
         const saveng = body.slice(awalan.length).trim().split(/ +/g);
@@ -70,14 +70,14 @@ if (!body.startsWith(awalan) || body == " ") return console.log(logo.pesan + `${
    
    if (kuldown(event.senderID, config.nama, config.kuldown) == 'hadi') { 
 	   
-if (maintain == false && (config.peran == 0 || !config.peran)) {
+if (config.peran == 0 || !config.peran) {
     await Alya({ api, event, args, bhs });
     return;
 }
 if ((config.peran == 2 || config.peran == 1) && admin.includes(event.senderID) || config.peran == 0) {
     await Alya({ api, event, args, bhs });
     return;
-} else if (maintain == false && config.peran == 1 && (ff.includes(event.senderID) || config.peran == 0)) {
+} else if (config.peran == 1 && ff.includes(event.senderID) || config.peran == 0) {
     await Alya({ api, event, args, bhs });
     return;
 } else { 
