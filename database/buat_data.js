@@ -18,8 +18,8 @@ db.serialize(() => {
   `);
 
   const stmt = db.prepare('INSERT INTO users (data) VALUES (?)');
-  const data = JSON.stringify({ nama: nama, yen: yen });
-  stmt.run(id, data, function(err) {
+  const data = JSON.stringify({ id: id, nama: nama, yen: yen });
+  stmt.run(data, function(err) {
     if (err) {
       console.log(global.Alya.logo.error + 'Gagal membuat data:', err.message);
     } else {
