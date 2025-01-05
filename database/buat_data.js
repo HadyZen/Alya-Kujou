@@ -12,9 +12,9 @@ const db = new sqlite.Database('./alya.db', (err) => {
 db.serialize(() => {
   db.run(`
     CREATE TABLE IF NOT EXISTS users (
-      id INTEGER PRIMARY KEY,
-      data JSON
-    )
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        data JSON
+      ) 
   `);
 
   const stmt = db.prepare('INSERT INTO users (data) VALUES (?)');
