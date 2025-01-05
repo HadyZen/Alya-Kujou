@@ -15,7 +15,7 @@ db.get('SELECT * FROM users WHERE id = ?', [id], (err, row) => {
   } else {
     if (row) {
       const hadi = JSON.parse(row.data);
-      return hadi;
+      return hadi || 'gada';
     } else {
       return 'gada';
     }
