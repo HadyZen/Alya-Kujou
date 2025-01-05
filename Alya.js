@@ -8,7 +8,7 @@
  const path = require("path");
  const akun = fs.readFileSync('akun.txt', 'utf8');
  const { version } = require('./package.json');
- const { awalan, nama, admin, proxy, port, bahasa: nakano, maintain } = require('./alya.json');
+ const { awalan, nama, admin, proxy, port, bahasa: nakano, maintain, chatdm, notifkey } = require('./alya.json');
  const { kuldown } = require('./hady-zen/kuldown');
 
 global.Alya = { awalan: awalan, nama: nama, admin: admin, logo: logo };
@@ -31,7 +31,7 @@ console.log(logo.pesan + 'Mulai menerima pesan dari pengguna.');
 	  
    api.listenMqtt((err, event) => {
    const body = event.body;
-if (!body) return;
+if (!body || chatdm == false && event.isGroup == false) return;
 if (body.toLowerCase() == "prefix") return api.sendMessage(`✨ Awalan ${nama} adalah: [ ${awalan} ]`, event.threadID, event.messageID);
 if (!body.startsWith(awalan) || body == " ") return console.log(logo.pesan + `${event.senderID} > ${body}`);
         const saveng = body.slice(awalan.length).trim().split(/ +/g);
