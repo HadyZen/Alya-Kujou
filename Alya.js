@@ -12,8 +12,12 @@
  const { kuldown } = require('./hady-zen/kuldown');
 
 async function notiferr(notif) { 
+  try { 
  const oreki = `# 𝗡𝗼𝘁𝗶𝗳𝗶𝗸𝗮𝘀𝗶\n\nNama: ${nama}\nPesan: ${notif}`;
  const { data } = await axios.get(`https://api.callmebot.com/facebook/send.php?apikey=${notifkey}&text=${encodeURIComponent(oreki)}`);
+  } catch (futaro) {
+   console.log(logo.error + 'Kamu belum menyetel notifkey atau notifkey tidak valid.');
+  }
 }
 global.Alya = { awalan: awalan, nama: nama, admin: admin, logo: logo };
 
