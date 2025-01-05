@@ -11,10 +11,12 @@
  const { version } = require('./package.json');
  const { awalan, nama, admin, proxy, port, bahasa: nakano, maintain, chatdm, notifkey } = require('./alya.json');
  const { kuldown } = require('./hady-zen/kuldown');
+ const { cdata } = require('./database/cek_data.js');
+ const { bdata } = require('./database/buat_data.js');
 
 async function notiferr(notif) { 
   try { 
- const oreki = `# 𝗡𝗼𝘁𝗶𝗳𝗶𝗸𝗮𝘀𝗶\n\nNama: ${nama}\nPesan: ${notif}`;
+ const oreki = `✧ 𝗡𝗼𝘁𝗶𝗳𝗶𝗸𝗮𝘀𝗶 𝗲𝗿𝗿𝗼𝗿\n\nNama: ${nama}\nPesan: ${notif}`;
  const { data } = await axios.get(`https://api.callmebot.com/facebook/send.php?apikey=${notifkey}&text=${encodeURIComponent(oreki)}`);
    console.log(logo.cmds + 'Notifikasi berhasil: ' + data);
   } catch (futaro) {
@@ -44,7 +46,8 @@ console.log(logo.pesan + 'Mulai menerima pesan dari pengguna.');
 	  
    api.listenMqtt((err, event) => {
    const body = event.body;
-if (!body || maintain == true && !admin.includes(event.senderID) || chatdm == false && event.isGroup == false && !admin.includes(event.senderID)) return;
+if (!body || maintain == true && !admin.includes(event.senderID) || chatdm == false && event.isGroup == false && !admin.includes(event.senderID)) return; 
+if (cdata(event.senderID)) 
 if (body.toLowerCase() == "prefix") return api.sendMessage(`✨ Awalan ${nama} adalah: [ ${awalan} ]`, event.threadID, event.messageID);
 if (!body.startsWith(awalan) || body == " ") return console.log(logo.pesan + `${event.senderID} > ${body}`);
         const saveng = body.slice(awalan.length).trim().split(/ +/g);
