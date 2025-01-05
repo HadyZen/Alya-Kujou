@@ -17,10 +17,12 @@ db.get('SELECT * FROM users WHERE id = ?', [id], (err, row) => {
       const hadi = JSON.parse(row.data);
       return hadi;
     } else {
-      return 'Pengguna tidak ditemukan.';
+      return 'gada';
     }
   }
 });
 
 db.close((err) => { });
 }
+
+module.exports = { cdata };
