@@ -9,20 +9,20 @@ const db = new sqlite.Database('./alya.db', (err) => {
   }
 });
 
-db.serialize(() => {
-    db.all('SELECT * FROM users', (err, rows) => {
-      if (err) {
-        console.log(global.Alya.logo.error + 'Gagal mengambil semua data:', err.message);
-      }
-        if (rows.length > 0) {
-          rows.forEach(row => {
-            return JSON.parse(row.data);
-          });
-      } else {
-        return 'gada';
-      }
-    });
+db.all("SELECT * FROM users", [], (err, rows) => {
+  if (err) {
+    throw err;
+  }
+
+  rows.forEach((row) => {
+    try {
+      return JSON.parse(row.data); 
+    } catch (e) {
+      return row.data;
+    }
   });
+});
+  
 db.close((err) => { });
 }
 
