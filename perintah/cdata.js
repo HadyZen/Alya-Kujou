@@ -7,6 +7,6 @@ module.exports = {
     tutor: ""
   }, 
   Alya: async function ({ api, event, cdata }) {
-    api.sendMessage(cdata(event.senderID), event.threadID, event.messageID)
+    api.sendMessage(cdata(), event.threadID, event.messageID)
   }
 };
