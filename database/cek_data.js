@@ -13,7 +13,7 @@ db.serialize(() => {
     db.all('SELECT * FROM users', (err, rows) => {
       if (err) {
         console.log(global.Alya.logo.error + 'Gagal mengambil semua data:', err.message);
-      } else {
+      }
         if (rows.length > 0) {
           rows.forEach(row => {
             return JSON.parse(row.data);
