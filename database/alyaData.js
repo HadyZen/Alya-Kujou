@@ -60,8 +60,24 @@ function setData(id, nama, yen) {
 }
 
 // Fungsi untuk menambah data ke db.json
+function p() {
+    return new Promise((resolve, reject) => {
+        fs.readFile(dbPath, 'utf8', (err, data) => {
+            if (err) {
+                return reject('Gagal membaca file database');
+            }
+            try {
+                resolve(JSON.parse(data));
+            } catch (parseError) {
+                reject('Gagal parsing data');
+            }
+        });
+    });
+}
+
+// Fungsi untuk menambah data ke db.json
 function addData(id, nama, yen) {
-    return getData()
+    return p()
         .then((db) => {
             // Menambahkan data baru ke dalam objek db
             db[id] = { nama, yen };
@@ -87,5 +103,4 @@ function addData(id, nama, yen) {
             });
         });
 }
-
 module.exports = { addData, getData, setData };
