@@ -5,26 +5,19 @@ const path = require('path');
 const dbPath = path.join(__dirname, 'db.json');
 
 // Fungsi untuk mendapatkan data berdasarkan id dari db.json
-function getData(id) {
-    return new Promise((resolve, reject) => {
-        fs.readFile(dbPath, 'utf8', (err, data) => {
-            if (err) {
-                return reject('Gagal membaca file database');
-            }
-            try {
-                const db = JSON.parse(data);
-                if (db[id]) {
-                    resolve(db[id]); // Mengembalikan data yang sesuai dengan id
-                } else {
-                    reject('Data tidak ditemukan');
-                }
-            } catch (parseError) {
-                reject('Gagal parsing data');
-            }
-        });
-    });
+async function getData(id) {
+    try {
+        const data = await fs.promises.readFile(dbPath, 'utf8');
+        const db = JSON.parse(data);
+        if (db[id]) {
+            return db[id]; // Mengembalikan data yang sesuai dengan id
+        } else {
+            throw new Error('Data tidak ditemukan');
+        }
+    } catch (err) {
+        throw new Error('Gagal membaca atau parsing file database');
+    }
 }
-
 // Fungsi untuk mengupdate data berdasarkan id
 function setData(id, nama, yen) {
     return getData(id)
