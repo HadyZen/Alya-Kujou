@@ -1,53 +1,52 @@
 const fs = require('fs');
 const path = require('path');
 
-// Read the JSON file and parse it correctly.
-let database = {};
-const filePath = path.join(__dirname, 'alyaData.json');
+// Lokasi file JSON untuk menyimpan data
+const dbPath = path.join(__dirname, 'db.json');
 
-try {
-    database = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-} catch (err) {
-    database = {}; // Initialize empty database if file is missing or invalid.
+// Fungsi untuk mendapatkan data dari db.json
+function getData() {
+    return new Promise((resolve, reject) => {
+        fs.readFile(dbPath, 'utf8', (err, data) => {
+            if (err) {
+                return reject('Gagal membaca file database');
+            }
+            try {
+                resolve(JSON.parse(data));
+            } catch (parseError) {
+                reject('Gagal parsing data');
+            }
+        });
+    });
 }
 
+// Fungsi untuk menambah data ke db.json
 function addData(id, nama, yen) {
-    if (!database[id]) {  // Check if user ID doesn't already exist
-        database[id].push({ nama, yen }); // Store new user data
-        console.log(global.Alya.logo.data + 'Berhasil menambah pengguna baru.');
-        saveData();  // Save to file
-    } else {
-        console.log(global.Alya.logo.error + 'Pengguna dengan ID ini sudah ada.');
-    }
-}
+    return getData()
+        .then((db) => {
+            // Menambahkan data baru ke dalam objek db
+            db[id] = { nama, yen };
+            return new Promise((resolve, reject) => {
+                fs.writeFile(dbPath, JSON.stringify(db, null, 2), (err) => {
+                    if (err) {
+                        return reject('Gagal menulis ke file database');
+                    }
+                    resolve('Data berhasil ditambahkan');
+                });
+            });
+        })
+        .catch((err) => {
+            // Jika file db.json tidak ada, buat file baru dengan data baru
+            const db = { [id]: { nama, yen } };
+            return new Promise((resolve, reject) => {
+                fs.writeFile(dbPath, JSON.stringify(db, null, 2), (err) => {
+                    if (err) {
+                        return reject('Gagal menulis ke file database');
+                    }
+                    resolve('Data berhasil ditambahkan');
+                });
+            });
+        });
+} 
 
-function saveData() {
-  fs.writeFile(filePath, JSON.stringify(database, null, 2), (err) => {
-    if (err) {
-        console.log(global.Alya.logo.error + 'Gagal menyimpan data: ', err);
-    } else {
-        console.log(global.Alya.logo.data + 'Data berhasil disimpan.');
-    }
-  });
-}
-
-function getData(id) {
-    // Return the data for the given ID or null if not found
-    return database[id] || null;
-}
-
-function setData(id, jenis, alya) {
-    if (database[id]) {
-        if (jenis === 'nama' || jenis === 'yen') {
-            database[id][jenis] = alya; // Update the user's data
-            saveData();  // Save changes
-            console.log(global.Alya.logo.data + 'Data berhasil diperbarui.');
-        } else {
-            console.log(global.Alya.logo.error + 'Jenis data tidak valid.');
-        }
-    } else {
-        console.log(global.Alya.logo.error + 'Pengguna tidak ditemukan.');
-    }
-}
-
-module.exports = { addData, getData, setData };
+module.exports = { addData, getData };
