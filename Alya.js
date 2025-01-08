@@ -11,8 +11,7 @@
  const { version } = require('./package.json');
  const { awalan, nama, admin, proxy, port, bahasa: nakano, maintain, chatdm, notifkey } = require('./alya.json');
  const { kuldown } = require('./hady-zen/kuldown');
- const { cdata } = require('./database/cek_data.js');
- const { bdata } = require('./database/buat_data.js');
+ const { getData, setData, addData } = require('./database/alyaData.js');
 
 async function notiferr(notif) { 
   try { 
@@ -47,11 +46,11 @@ console.log(logo.pesan + 'Mulai menerima pesan dari pengguna.');
    api.listenMqtt((err, event) => {
    const body = event.body;
 if (!body || maintain == true && !admin.includes(event.senderID) || chatdm == false && event.isGroup == false && !admin.includes(event.senderID)) return; 
-  bdata(event.senderID, 'Unknown', 0);
 if (body.toLowerCase() == "prefix") return api.sendMessage(`✨ Awalan ${nama} adalah: [ ${awalan} ]`, event.threadID, event.messageID);
 if (!body.startsWith(awalan) || body == " ") return console.log(logo.pesan + `${event.senderID} > ${body}`);
         const saveng = body.slice(awalan.length).trim().split(/ +/g);
         const cmd = saveng.shift().toLowerCase();
+	addData(event.senderID, 'Unknown', 0);
 	   
             async function hady_cmd(cmd, api, event) {
        const pipi = body?.replace(`${awalan}${cmd}`, "")?.trim();
@@ -76,14 +75,14 @@ if (!body.startsWith(awalan) || body == " ") return console.log(logo.pesan + `${
    if (kuldown(event.senderID, config.nama, config.kuldown) == 'hadi') { 
 	   
 if (config.peran == 0 || !config.peran) {
-    await Alya({ api, event, args, bhs, cdata });
+    await Alya({ api, event, args, bhs, setData, getData });
     return;
 }
 if ((config.peran == 2 || config.peran == 1) && admin.includes(event.senderID) || config.peran == 0) {
-    await Alya({ api, event, args, bhs, cdata });
+    await Alya({ api, event, args, bhs, setData, getData });
     return;
 } else if (config.peran == 1 && ff.includes(event.senderID) || config.peran == 0) {
-    await Alya({ api, event, args, bhs, cdata });
+    await Alya({ api, event, args, bhs, setData, getData });
     return;
 } else { 
     api.setMessageReaction("❕", event.messageID);
@@ -112,10 +111,8 @@ app.use((req, res, next) => {
 });
 
 process.on('unhandledRejection', (reason) => {
-	notiferr(reason.message);
 	console.log(logo.error + reason.message);
 });
 process.on('uncaughtException', (err) => {
-	notiferr(err.message);
 	console.log(logo.error + err.message);
 });
