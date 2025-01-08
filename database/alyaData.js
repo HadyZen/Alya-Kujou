@@ -13,7 +13,7 @@ try {
 
 function addData(id, nama, yen) {
     if (!database[id]) {  // Check if user ID doesn't already exist
-        database[id] = { nama, yen }; // Store new user data
+        database[id].push({ nama, yen }); // Store new user data
         console.log(global.Alya.logo.data + 'Berhasil menambah pengguna baru.');
         saveData();  // Save to file
     } else {
