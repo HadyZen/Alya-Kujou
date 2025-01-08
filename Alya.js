@@ -3,7 +3,7 @@
  const express = require('express');
  const app = express();
  const login = require("./hady-zen/alya-fca");
- const { logo } = require("./hady-zen/log.js");
+ const { logo, warna, font, ayanokoji } = require("./hady-zen/log.js");
  const fs = require("fs");
  const path = require("path");
  const axios = require('axios');
@@ -25,13 +25,13 @@ async function notiferr(notif) {
 global.Alya = { awalan: awalan, nama: nama, admin: admin, logo: logo };
 
 console.log(global.Alya.logo.alya);
-console.log(logo.info + `Versi ${version}.`);
-console.log(logo.info + `Awalan ${nama.toLowerCase()}: ${awalan}`);
-console.log(logo.info + `Bahasa yang digunakan: ${nakano}.`);
-console.log(logo.info + `Admin ${nama.toLowerCase()}: ${admin}.`);
+console.log(ayanokoji('versi') + `${version}.`);
+console.log(ayanokoji('awalan') + `[ ${awalan} ].`);
+console.log(ayanokoji('bahasa') + `${nakano}.`);
+console.log(ayanokoji('admin') + `${admin}.`);
 fs.readdir('./perintah', (err, files) => { 
 const shadow = files.map(file => path.parse(file).name);
-console.log(logo.info + `Perintah: ${shadow}.`);
+console.log(ayanokoji('perintah') + `${shadow}.`);
 });
 if (!akun || akun.length < 0) return console.log(logo.error + 'Harap masukkan cookie terlebih dahulu.');
 const zen = { host: proxy, port: port };
