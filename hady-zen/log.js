@@ -27,4 +27,8 @@ const logo = {
   alya: `${warna.biru}▄▀█ █░ █▄█ ▄▀█  █▄▀ █░█ ░█ █▀█ █░█\n█▀█ █▄ ░█░ █▀█  █░█ █▄█ ▄█ █▄█ █▄█${warna.reset}\n`
 };
 
-module.exports = { warna, font, logo };
+function ayanokoji(nama) {
+  return `${warna.hitam}${waktu}${warna.reset} ${warna.hijau}${font.bold}${nama.toUpperCase()}: ${warna.reset}`;
+};
+
+module.exports = { warna, font, logo, ayanokoji };
